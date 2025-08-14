@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JVDeveloper.com - Professional Joint Venture Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo-svg {
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+
+        /* Main Content Area */
+        main {
+            margin-top: 80px;
+        }
+
+        .page {
+            display: none;
+            min-height: calc(100vh - 80px);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .subheadline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+        }
+
+        .cta-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1e40af;
+        }
+
+        /* Dual Audience Sections */
+        .dual-audience {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .audience-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-top: 4px solid #3b82f6;
+        }
+
+        .audience-card.beginner {
+            border-top-color: #10b981;
+        }
+
+        .audience-card.advanced {
+            border-top-color: #8b5cf6;
+        }
+
+        .audience-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e40af;
+        }
+
+        .audience-card.beginner h3 {
+            color: #059669;
+        }
+
+        .audience-card.advanced h3 {
+            color: #7c3aed;
+        }
+
+        /* Property Snapshots */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .property-image.austin {
+            background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .property-image.denver {
+            background-image: url('https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .property-image.nashville {
+            background-image: url('https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .property-image.miami {
+            background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .property-image.phoenix {
+            background-image: url('https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .property-image.seattle {
+            background-image: url('https://images.unsplash.com/photo-1502005097973-6a7082348e28?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .property-image.owner-property {
+            background-image: url('https://images.unsplash.com/photo-1592595896551-12b371d546d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .property-info {
+            padding: 1.5rem;
+        }
+
+        .property-info h3 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            background: #e5e7eb;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #10b981, #059669);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        /* How It Works - Simple Steps */
+        .steps-simple {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step-simple {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .step-simple::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .step-simple:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Process Steps */
+        .process-steps {
+            background: #f8fafc;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .process-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .process-list li {
+            counter-increment: step-counter;
+            margin-bottom: 2rem;
+            padding-left: 4rem;
+            position: relative;
+        }
+
+        .process-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-list h4 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            background: #f8fafc;
+            min-height: calc(100vh - 80px);
+            padding: 2rem 0;
+        }
+
+        .dashboard-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .trust-item {
+            padding: 1rem;
+        }
+
+        .trust-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Disclosure Boxes */
+        .disclosure-box {
+            background: #fef3c7;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #f59e0b;
+            margin: 2rem 0;
+        }
+
+        .disclosure-box.control {
+            background: #dbeafe;
+            border-left-color: #3b82f6;
+        }
+
+        .disclosure-box h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .disclosure-box.control h4 {
+            color: #1e40af;
+        }
+
+        .disclosure-box p {
+            color: #92400e;
+            font-size: 0.95rem;
+        }
+
+        .disclosure-box.control p {
+            color: #1e40af;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f9fafb;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .disclaimer {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #9ca3af;
+            text-align: center;
+        }
+
+        /* Status badges */
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-planning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-construction {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-sale {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-completed {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subheadline {
+                font-size: 1.1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            main {
+                margin-top: 120px;
+            }
+
+            .dual-audience {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .steps-simple {
+                grid-template-columns: 1fr;
+            }
+
+            .step-simple::after {
+                content: '↓';
+                right: 50%;
+                top: auto;
+                bottom: -1rem;
+                transform: translateX(50%);
+            }
+
+            .step-simple:last-child::after {
+                display: none;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo" onclick="showPage('home')" id="logoContainer">
+                <img id="logoImage" alt="JVDeveloper Logo" style="height: 40px; width: auto; display: none;">
+                <div class="logo-svg" id="logoFallback">
+                    <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Hexagon background with rounded corners -->
+                        <path d="M30 10 L70 10 Q85 10 90 25 L90 75 Q90 90 75 90 L25 90 Q10 90 10 75 L10 25 Q10 10 25 10 L30 10 Z" fill="#1e7fb8"/>
+                        
+                        <!-- Main house shape -->
+                        <polygon points="30,35 50,22 70,35 70,55 30,55" fill="white"/>
+                        
+                        <!-- House windows (4 small squares) -->
+                        <rect x="35" y="40" width="4" height="4" fill="#1e7fb8"/>
+                        <rect x="42" y="40" width="4" height="4" fill="#1e7fb8"/>
+                        <rect x="54" y="40" width="4" height="4" fill="#1e7fb8"/>
+                        <rect x="61" y="40" width="4" height="4" fill="#1e7fb8"/>
+                        
+                        <!-- Door -->
+                        <rect x="47" y="47" width="6" height="8" fill="#1e7fb8"/>
+                        
+                        <!-- Buildings/towers on sides -->
+                        <rect x="20" y="45" width="6" height="25" fill="white"/>
+                        <rect x="74" y="40" width="6" height="30" fill="white"/>
+                        <rect x="82" y="50" width="4" height="20" fill="white"/>
+                        
+                        <!-- Growth chart bars -->
+                        <rect x="25" y="65" width="3" height="8" fill="white"/>
+                        <rect x="30" y="60" width="3" height="13" fill="white"/>
+                        <rect x="35" y="55" width="3" height="18" fill="white"/>
+                    </svg>
+                </div>
+                <span style="color: white; font-weight: bold; font-size: 1.8rem; letter-spacing: -0.5px;">JVDeveloper</span>
+            </a>
+            <nav>
+                <a href="#" class="nav-btn" onclick="showLoginModal('investor')">Investor Login</a>
+                <a href="#" class="nav-btn" onclick="showLoginModal('owner')">Property Owner Login</a>
+                <a href="#" class="nav-btn" onclick="showPage('become-jv')">Become a JV Developer</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <h1>Become a JV Developer — We Handle Everything. You Collect the Profit.</h1>
+                    <p class="subheadline">From first-time homeowners to seasoned investors — if you own the property, we can turn it into a profitable development.</p>
+                    <div class="cta-container">
+                        <a href="#" class="cta-primary" onclick="showPage('become-jv')">Become a JV Developer</a>
+                        <a href="#" class="cta-secondary" onclick="showPage('properties')">View Projects</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Property Snapshots -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Current Investment Opportunities</h2>
+                    <div class="properties-grid">
+                        <div class="property-card">
+                            <div class="property-image austin"></div>
+                            <div class="property-info">
+                                <h3>Modern Townhomes - Austin, TX</h3>
+                                <p>4-unit luxury development</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <p><strong>75% funded</strong> - $750K of $1M raised</p>
+                                <span class="status-badge status-construction">Under Construction</span>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-image denver"></div>
+                            <div class="property-info">
+                                <h3>Single Family Homes - Denver, CO</h3>
+                                <p>3-home subdivision</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                                <p><strong>45% funded</strong> - $450K of $1M raised</p>
+                                <span class="status-badge status-planning">Permitting</span>
+                            </div>
+                        </div>
+
+                        <div class="property-card">
+                            <div class="property-image nashville"></div>
+                            <div class="property-info">
+                                <h3>Duplex Development - Nashville, TN</h3>
+                                <p>2-unit luxury duplex</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 90%"></div>
+                                </div>
+                                <p><strong>90% funded</strong> - $540K of $600K raised</p>
+                                <span class="status-badge status-sale">For Sale</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#" onclick="showPage('properties')" style="color: #3b82f6; font-weight: 600; font-size: 1.1rem;">View All Properties →</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Simple 3-Step Process -->
+            <section class="section" style="background: #f8fafc;">
+                <div class="container">
+                    <h2 class="section-title">How It Works</h2>
+                    <div class="steps-simple">
+                        <div class="step-simple">
+                            <div class="step-number">1</div>
+                            <h3>You Bring the Property</h3>
+                            <p>Submit your property details. Our system instantly evaluates development potential and profitability.</p>
+                        </div>
+                        <div class="step-simple">
+                            <div class="step-number">2</div>
+                            <h3>We Raise the Money & Build</h3>
+                            <p>We secure all funding, handle permits, and manage construction. You remain the owner throughout.</p>
+                        </div>
+                        <div class="step-simple">
+                            <div class="step-number">3</div>
+                            <h3>We Sell & Share Profits</h3>
+                            <p>Upon completion, we sell the development and share profits with you as the JV partner.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dual Audience Explainers -->
+            <section class="section">
+                <div class="container">
+                    <div class="dual-audience">
+                        <div class="audience-card beginner">
+                            <h3>New to Development?</h3>
+                            <p><strong>No experience needed.</strong> We walk you through every step from initial assessment to final profit distribution.</p>
+                            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                                <li>Simple property qualification process</li>
+                                <li>We handle all complex paperwork and permits</li>
+                                <li>Regular updates in plain English</li>
+                                <li>Risk-free assessment of your property</li>
+                            </ul>
+                            <p style="font-style: italic; color: #059669;">We hold your hand from start to finish.</p>
+                        </div>
+
+                        <div class="audience-card advanced">
+                            <h3>Experienced Owner?</h3>
+                            <p><strong>Full-service JV management</strong> — underwriting, permitting, construction, and sales under one roof.</p>
+                            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                                <li>Professional capital stack management</li>
+                                <li>Institutional-grade construction oversight</li>
+                                <li>Investor-level reporting and transparency</li>
+                                <li>Proven exit strategy execution</li>
+                            </ul>
+                            <p style="font-style: italic; color: #7c3aed;">Capital stack, construction management, and sales strategy handled by seasoned professionals.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trust Section -->
+            <section class="trust-section">
+                <div class="container">
+                    <h2 class="section-title">Trusted Process, Proven Results</h2>
+                    <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 3rem;">
+                        Trusted by both first-time homeowners and experienced property investors.
+                    </p>
+                    <div class="trust-grid">
+                        <div class="trust-item">
+                            <div class="trust-icon">🏆</div>
+                            <h3>50+ Completed Projects</h3>
+                            <p>Successful developments from coast to coast</p>
+                        </div>
+                        <div class="trust-item">
+                            <div class="trust-icon">💰</div>
+                            <h3>$25M+ in Profits</h3>
+                            <p>Distributed to property owner partners</p>
+                        </div>
+                        <div class="trust-item">
+                            <div class="trust-icon">⚡</div>
+                            <h3>Fast Underwriting</h3>
+                            <p>Instant property assessment and qualification</p>
+                        </div>
+                        <div class="trust-item">
+                            <div class="trust-icon">🔒</div>
+                            <h3>Full Transparency</h3>
+                            <p>Real-time project tracking and reporting</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- BECOME A JV DEVELOPER PAGE -->
+        <div id="become-jv" class="page">
+            <section class="section">
+                <div class="container">
+                    <h1 class="section-title">Become a JV Developer</h1>
+                    
+                    <!-- Dual Intro Section -->
+                    <div class="dual-audience">
+                        <div class="audience-card beginner">
+                            <h3>No Experience Needed</h3>
+                            <p>We walk you through every step of the development process. From initial property assessment to final profit distribution, our team handles all the complexity while keeping you informed and in control.</p>
+                        </div>
+
+                        <div class="audience-card advanced">
+                            <h3>Full-Service JV Management</h3>
+                            <p>Underwriting, permitting, construction, and sales under one roof. Our experienced team provides institutional-grade execution with transparent reporting throughout the entire development cycle.</p>
+                        </div>
+                    </div>
+
+                    <!-- Qualification Form -->
+                    <div class="form-container">
+                        <h2 style="text-align: center; margin-bottom: 1rem; color: #1e40af;">Are You a Candidate?</h2>
+                        <p style="text-align: center; margin-bottom: 2rem; color: #6b7280;">
+                            Submit your property details for instant evaluation and qualification assessment.
+                        </p>
+                        
+                        <form id="qualification-form">
+                            <div class="form-group">
+                                <label for="property-address">Property Address *</label>
+                                <input type="text" id="property-address" name="propertyAddress" required 
+                                       placeholder="Enter your complete property address">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="has-liens">Do you have any liens on the property? *</label>
+                                <select id="has-liens" name="hasLiens" required>
+                                    <option value="">Select an option</option>
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mortgage-balance">Current Mortgage Balance *</label>
+                                <input type="number" id="mortgage-balance" name="mortgageBalance" required 
+                                       placeholder="Enter amount (e.g., 250000)" min="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lot-size">Lot Size (square feet) *</label>
+                                <input type="number" id="lot-size" name="lotSize" required 
+                                       placeholder="Enter lot size in square feet" min="1000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-email">Email Address *</label>
+                                <input type="email" id="contact-email" name="email" required 
+                                       placeholder="your.email@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-phone">Phone Number *</label>
+                                <input type="tel" id="contact-phone" name="phone" required 
+                                       placeholder="(555) 123-4567">
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">Submit for AI Evaluation</button>
+                        </form>
+                    </div>
+
+                    <!-- Process Breakdown -->
+                    <div class="process-steps">
+                        <h2 style="text-align: center; margin-bottom: 2rem; color: #1e40af;">Our Complete Process</h2>
+                        <ol class="process-list">
+                            <li>
+                                <h4>Submit Your Property Info</h4>
+                                <p>Complete our simple form with basic property details. Takes less than 3 minutes.</p>
+                            </li>
+                            <li>
+                                <h4>AI Underwriting + Human Review</h4>
+                                <p>Our AI instantly evaluates your property for development potential. Our team reviews all qualifying properties within 48 hours.</p>
+                            </li>
+                            <li>
+                                <h4>JV Agreement Sent if Approved</h4>
+                                <p>Approved properties receive a detailed JV agreement outlining the partnership terms, profit sharing, and timeline.</p>
+                            </li>
+                            <li>
+                                <h4>We Raise Capital, Build, and Sell</h4>
+                                <p>We handle all aspects: investor capital raising, permitting, construction management, and final sales process.</p>
+                            </li>
+                            <li>
+                                <h4>You Receive Your Share of Profits</h4>
+                                <p>Upon successful sale, investor capital is recouped first, then profits are distributed according to the JV agreement.</p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Control & Exit Strategy Disclosure -->
+                    <div class="disclosure-box control">
+                        <h4>🏗️ Project Control & Exit Strategy</h4>
+                        <p>All projects are sold immediately upon completion. JVDeveloper controls the listing agent, sale price, and timing to protect investor capital recovery before profit distribution. This ensures professional execution and maximum returns for all parties.</p>
+                    </div>
+
+                    <!-- Risk Disclosure -->
+                    <div class="disclosure-box">
+                        <h4>⚠️ Investment Risk Disclosure</h4>
+                        <p>Real estate development investments carry inherent risks. Timelines, approvals, and returns are not guaranteed. Market conditions, permit delays, construction costs, and other factors can affect project outcomes. All investment decisions should be made after careful consideration of your financial situation.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PROPERTIES PAGE -->
+        <div id="properties" class="page">
+            <section class="section">
+                <div class="container">
+                    <h1 class="section-title">Investment Properties</h1>
+                    
+                    <div style="text-align: center; margin-bottom: 3rem;">
+                        <button class="nav-btn" onclick="filterProperties('open')" style="margin: 0 0.5rem;">Open for Investment</button>
+                        <button class="nav-btn" onclick="filterProperties('completed')" style="margin: 0 0.5rem;">Completed Projects</button>
+                        <button class="nav-btn" onclick="filterProperties('all')" style="margin: 0 0.5rem;">All Projects</button>
+                    </div>
+                    
+                    <div class="properties-grid" id="properties-container">
+                        <!-- Active Projects -->
+                        <div class="property-card" data-status="open">
+                            <div class="property-image austin"></div>
+                            <div class="property-info">
+                                <h3>Modern Townhomes - Austin, TX</h3>
+                                <p>4-unit luxury development in prime location</p>
+                                <div style="margin: 1rem 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Capital Raised:</span>
+                                        <span><strong>75%</strong></span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #6b7280;">
+                                        <span>$750K raised</span>
+                                        <span>$1M target</span>
+                                    </div>
+                                </div>
+                                <p><strong>Expected Completion:</strong> Q2 2026</p>
+                                <span class="status-badge status-construction">Under Construction</span>
+                            </div>
+                        </div>
+
+                        <div class="property-card" data-status="open">
+                            <div class="property-image denver"></div>
+                            <div class="property-info">
+                                <h3>Single Family Homes - Denver, CO</h3>
+                                <p>3-home subdivision with mountain views</p>
+                                <div style="margin: 1rem 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Capital Raised:</span>
+                                        <span><strong>45%</strong></span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 45%"></div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #6b7280;">
+                                        <span>$450K raised</span>
+                                        <span>$1M target</span>
+                                    </div>
+                                </div>
+                                <p><strong>Expected Completion:</strong> Q4 2026</p>
+                                <span class="status-badge status-planning">Permitting</span>
+                            </div>
+                        </div>
+
+                        <div class="property-card" data-status="open">
+                            <div class="property-image nashville"></div>
+                            <div class="property-info">
+                                <h3>Duplex Development - Nashville, TN</h3>
+                                <p>2-unit luxury duplex in Music Row area</p>
+                                <div style="margin: 1rem 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Capital Raised:</span>
+                                        <span><strong>90%</strong></span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 90%"></div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #6b7280;">
+                                        <span>$540K raised</span>
+                                        <span>$600K target</span>
+                                    </div>
+                                </div>
+                                <p><strong>Expected Sale:</strong> Q1 2026</p>
+                                <span class="status-badge status-sale">For Sale</span>
+                            </div>
+                        </div>
+
+                        <div class="property-card" data-status="open">
+                            <div class="property-image miami"></div>
+                            <div class="property-info">
+                                <h3>Luxury Condos - Miami, FL</h3>
+                                <p>6-unit waterfront condominium complex</p>
+                                <div style="margin: 1rem 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Capital Raised:</span>
+                                        <span><strong>30%</strong></span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 30%"></div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #6b7280;">
+                                        <span>$600K raised</span>
+                                        <span>$2M target</span>
+                                    </div>
+                                </div>
+                                <p><strong>Expected Completion:</strong> Q3 2027</p>
+                                <span class="status-badge status-planning">Planning</span>
+                            </div>
+                        </div>
+
+                        <!-- Completed Projects -->
+                        <div class="property-card" data-status="completed">
+                            <div class="property-image phoenix"></div>
+                            <div class="property-info">
+                                <h3>Suburban Homes - Phoenix, AZ</h3>
+                                <p>5-home development project</p>
+                                <div style="margin: 1rem 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Final ROI:</span>
+                                        <span><strong>28%</strong></span>
+                                    </div>
+                                    <div style="background: #d1fae5; padding: 0.5rem; border-radius: 5px; text-align: center; color: #065f46;">
+                                        Total Profit: $340K distributed
+                                    </div>
+                                </div>
+                                <p><strong>Completed:</strong> December 2024</p>
+                                <span class="status-badge status-completed">Completed</span>
+                            </div>
+                        </div>
+
+                        <div class="property-card" data-status="completed">
+                            <div class="property-image seattle"></div>
+                            <div class="property-info">
+                                <h3>Downtown Lofts - Seattle, WA</h3>
+                                <p>4-unit urban loft conversion</p>
+                                <div style="margin: 1rem 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span>Final ROI:</span>
+                                        <span><strong>35%</strong></span>
+                                    </div>
+                                    <div style="background: #d1fae5; padding: 0.5rem; border-radius: 5px; text-align: center; color: #065f46;">
+                                        Total Profit: $525K distributed
+                                    </div>
+                                </div>
+                                <p><strong>Completed:</strong> August 2024</p>
+                                <span class="status-badge status-completed">Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- INVESTOR DASHBOARD -->
+        <div id="investor-dashboard" class="page">
+            <div class="dashboard">
+                <div class="container">
+                    <div class="dashboard-header">
+                        <h1>Investor Dashboard</h1>
+                        <p>Welcome back! Track your investments and project progress below.</p>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <h3>Portfolio Overview</h3>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #3b82f6;">$85K</div>
+                                    <div style="font-size: 0.9rem; color: #6b7280;">Total Invested</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #10b981;">3</div>
+                                    <div style="font-size: 0.9rem; color: #6b7280;">Active Projects</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #f59e0b;">$23K</div>
+                                    <div style="font-size: 0.9rem; color: #6b7280;">Profits Earned</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <h3>Recent Activity</h3>
+                            <div style="margin-top: 1rem;">
+                                <div style="padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                                    <div style="font-weight: 600;">Austin Townhomes - Progress Update</div>
+                                    <div style="font-size: 0.9rem; color: #6b7280;">Foundation completed, framing begins next week</div>
+                                    <div style="font-size: 0.8rem; color: #9ca3af;">2 days ago</div>
+                                </div>
+                                <div style="padding: 0.75rem 0; border-bottom: 1px solid #e5e7eb;">
+                                    <div style="font-weight: 600;">Nashville Duplex - For Sale</div>
+                                    <div style="font-size: 0.9rem; color: #6b7280;">Property listed at $1.2M, showings scheduled</div>
+                                    <div style="font-size: 0.8rem; color: #9ca3af;">1 week ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h2 style="margin-bottom: 1.5rem;">Your Investments</h2>
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card">
+                                <h3>Austin Townhomes</h3>
+                                <p><strong>Investment:</strong> $35,000</p>
+                                <p><strong>Status:</strong> <span class="status-badge status-construction">Under Construction</span></p>
+                                <p><strong>Expected Completion:</strong> Q2 2026</p>
+                                <div style="margin-top: 1rem;">
+                                    <div style="font-size: 0.9rem; color: #6b7280; margin-bottom: 0.5rem;">Construction Progress: 35%</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 35%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Denver Single Family</h3>
+                                <p><strong>Investment:</strong> $25,000</p>
+                                <p><strong>Status:</strong> <span class="status-badge status-planning">Permitting</span></p>
+                                <p><strong>Expected Start:</strong> Q1 2026</p>
+                                <div style="margin-top: 1rem;">
+                                    <div style="font-size: 0.9rem; color: #6b7280; margin-bottom: 0.5rem;">Permit Progress: 70%</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Nashville Duplex</h3>
+                                <p><strong>Investment:</strong> $25,000</p>
+                                <p><strong>Status:</strong> <span class="status-badge status-sale">For Sale</span></p>
+                                <p><strong>Expected Sale:</strong> Q1 2026</p>
+                                <div style="margin-top: 1rem;">
+                                    <div style="background: #dbeafe; padding: 1rem; border-radius: 5px;">
+                                        <div style="font-weight: 600; color: #1e40af;">Ready for Sale</div>
+                                        <div style="font-size: 0.9rem; color: #3730a3;">Listed at $1.2M - Projected profit: $8,500</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROPERTY OWNER DASHBOARD -->
+        <div id="owner-dashboard" class="page">
+            <div class="dashboard">
+                <div class="container">
+                    <div class="dashboard-header">
+                        <h1>Property Owner Dashboard</h1>
+                        <p>Track the development progress of your property and capital raising status.</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h2>Your Development Project</h2>
+                        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin-top: 2rem;">
+                            <div>
+                                <div class="property-image owner-property" style="height: 200px;"></div>
+                            </div>
+                            <div>
+                                <h3>Modern Townhomes Development</h3>
+                                <p><strong>Address:</strong> 123 Main Street, Austin, TX 78701</p>
+                                <p><strong>Development Type:</strong> 4-unit luxury townhomes</p>
+                                <p><strong>Project Manager:</strong> Sarah Johnson</p>
+                                <p><strong>Status:</strong> <span class="status-badge status-construction">Under Construction</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card">
+                                <h3>Capital Raising Status</h3>
+                                <div style="margin: 1rem 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span style="font-weight: 600;">Capital Raised:</span>
+                                        <span style="font-weight: bold; color: #10b981;">75%</span>
+                                    </div>
+                                    <div class="progress-bar" style="height: 12px;">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.9rem; color: #6b7280;">
+                                        <span>$750,000 raised</span>
+                                        <span>$1,000,000 target</span>
+                                    </div>
+                                </div>
+                                <p style="color: #059669; font-weight: 600;">✓ Funding secured for construction start</p>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Construction Progress</h3>
+                                <div style="margin: 1rem 0;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span style="font-weight: 600;">Overall Progress:</span>
+                                        <span style="font-weight: bold; color: #3b82f6;">35%</span>
+                                    </div>
+                                    <div class="progress-bar" style="height: 12px;">
+                                        <div class="progress-fill" style="width: 35%"></div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                                        <span>Foundation</span>
+                                        <span style="color: #10b981; font-weight: 600;">✓ Complete</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                                        <span>Framing</span>
+                                        <span style="color: #f59e0b; font-weight: 600;">⚠ In Progress</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                                        <span>Electrical/Plumbing</span>
+                                        <span style="color: #6b7280;">○ Pending</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-card">
+                                <h3>Timeline & Milestones</h3>
+                                <div style="margin-top: 1rem;">
+                                    <div style="border-left: 3px solid #e5e7eb; padding-left: 1rem;">
+                                        <div style="margin-bottom: 1rem;">
+                                            <div style="font-weight: 600; color: #10b981;">✓ Permits Approved</div>
+                                            <div style="font-size: 0.9rem; color: #6b7280;">Completed October 2024</div>
+                                        </div>
+                                        <div style="margin-bottom: 1rem;">
+                                            <div style="font-weight: 600; color: #10b981;">✓ Construction Started</div>
+                                            <div style="font-size: 0.9rem; color: #6b7280;">Completed November 2024</div>
+                                        </div>
+                                        <div style="margin-bottom: 1rem;">
+                                            <div style="font-weight: 600; color: #f59e0b;">⚠ Framing Phase</div>
+                                            <div style="font-size: 0.9rem; color: #6b7280;">Est. completion January 2025</div>
+                                        </div>
+                                        <div style="margin-bottom: 1rem;">
+                                            <div style="font-weight: 600; color: #6b7280;">○ Final Inspections</div>
+                                            <div style="font-size: 0.9rem; color: #6b7280;">Estimated March 2026</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; color: #6b7280;">○ Sales & Profit Distribution</div>
+                                            <div style="font-size: 0.9rem; color: #6b7280;">Estimated Q2 2026</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <div class="dashboard-card">
+                            <h3>Recent Communications</h3>
+                            <div style="margin-top: 1rem;">
+                                <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span style="font-weight: 600;">Sarah Johnson - Project Manager</span>
+                                        <span style="font-size: 0.9rem; color: #6b7280;">2 days ago</span>
+                                    </div>
+                                    <p style="color: #374151;">Foundation inspection passed with flying colors! We're moving into the framing phase next week. Weather has been cooperative and we're on track for our timeline.</p>
+                                </div>
+                                <div style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                        <span style="font-weight: 600;">Investment Team Update</span>
+                                        <span style="font-size: 0.9rem; color: #6b7280;">1 week ago</span>
+                                    </div>
+                                    <p style="color: #374151;">We've reached 75% of our capital raising goal! Only $250K remaining to fully fund the project. New investors continue to show strong interest.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JVDeveloper.com</h3>
+                    <p>Professional joint venture development partnerships for property owners and investors.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#" onclick="showPage('home')">Home</a></p>
+                    <p><a href="#" onclick="showPage('become-jv')">Become a JV Developer</a></p>
+                    <p><a href="#" onclick="showPage('properties')">Properties</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@jvdeveloper.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                    <p>Address: 123 Business Ave, Suite 100<br>Austin, TX 78701</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <p><a href="#">Terms of Service</a></p>
+                    <p><a href="#">Privacy Policy</a></p>
+                    <p><a href="#">Risk Disclosure</a></p>
+                </div>
+            </div>
+            <div class="disclaimer">
+                <p><strong>Investment Risk Disclosure:</strong> Real estate investments carry risk. Timelines, approvals, and returns are not guaranteed. Market conditions, permit delays, construction costs, and other factors can affect project outcomes. All investment decisions should be made after careful consideration of your financial situation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Property Filtering
+        function filterProperties(filter) {
+            const properties = document.querySelectorAll('.property-card');
+            properties.forEach(property => {
+                if (filter === 'all') {
+                    property.style.display = 'block';
+                } else {
+                    const status = property.getAttribute('data-status');
+                    property.style.display = status === filter ? 'block' : 'none';
+                }
+            });
+        }
+
+        // Login Modal
+        function showLoginModal(type) {
+            const modal = document.getElementById('loginModal');
+            const title = document.getElementById('modalTitle');
+            
+            if (type === 'investor') {
+                title.textContent = 'Investor Login';
+            } else {
+                title.textContent = 'Property Owner Login';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Form Submissions
+        document.getElementById('qualification-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Underwriting Logic
+            const underwritingResult = performAIUnderwriting(data);
+            
+            if (underwritingResult.status === 'approved') {
+                alert('🎉 Congratulations! Your property qualifies for our JV development program.\n\nScore: ' + Math.round(underwritingResult.score) + '/100\n\nOur team will contact you within 24 hours with your JV agreement and next steps.');
+                
+                // Send welcome email (in production)
+                sendWelcomeEmail(data.email, data.propertyAddress);
+                
+            } else if (underwritingResult.status === 'review') {
+                alert('📋 Thank you for your submission! Your property requires additional review.\n\nScore: ' + Math.round(underwritingResult.score) + '/100\n\nOur underwriting team will contact you within 48 hours to discuss your options and potential pathways to qualification.');
+            } else {
+                alert('Thank you for your interest in JVDeveloper.com.\n\nScore: ' + Math.round(underwritingResult.score) + '/100\n\nBased on our initial assessment, your property may not meet our current development criteria. However, our team will still contact you to discuss alternative options and potential future opportunities.');
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const modalTitle = document.getElementById('modalTitle').textContent;
+            
+            if (email && document.getElementById('password').value) {
+                closeModal();
+                
+                if (modalTitle.includes('Investor')) {
+                    showPage('investor-dashboard');
+                } else {
+                    showPage('owner-dashboard');
+                }
+                
+                alert('Login successful! Welcome to your dashboard.');
+            }
+        });
+
+        // Underwriting Tool - Enhanced Algorithm
+        function performAIUnderwriting(propertyData) {
+            const score = calculatePropertyScore(propertyData);
+            
+            if (score >= 75) {
+                return { status: 'approved', score: score };
+            } else if (score >= 55) {
+                return { status: 'review', score: score };
+            } else {
+                return { status: 'declined', score: score };
+            }
+        }
+
+        function calculatePropertyScore(data) {
+            let score = 40; // Base score
+            
+            // Lot size assessment (major factor)
+            const lotSize = parseInt(data.lotSize);
+            if (lotSize >= 10000) score += 25;
+            else if (lotSize >= 7500) score += 20;
+            else if (lotSize >= 5000) score += 15;
+            else if (lotSize >= 3000) score += 10;
+            else if (lotSize >= 2000) score += 5;
+            
+            // Mortgage balance assessment
+            const mortgageBalance = parseInt(data.mortgageBalance);
+            if (mortgageBalance === 0) score += 20;
+            else if (mortgageBalance < 150000) score += 15;
+            else if (mortgageBalance < 300000) score += 10;
+            else if (mortgageBalance < 500000) score += 5;
+            
+            // Liens assessment (critical factor)
+            if (data.hasLiens === 'no') {
+                score += 15;
+            } else {
+                score -= 10; // Liens significantly impact qualification
+            }
+            
+            // Location scoring based on address (simplified)
+            const address = data.propertyAddress.toLowerCase();
+            if (address.includes('austin') || address.includes('denver') || address.includes('nashville') || address.includes('miami')) {
+                score += 10; // High-growth markets
+            } else if (address.includes('tx') || address.includes('co') || address.includes('tn') || address.includes('fl')) {
+                score += 5; // Good state markets
+            }
+            
+            // Add some realistic randomization for market conditions, zoning, etc.
+            const marketVariation = (Math.random() - 0.5) * 15;
+            score += marketVariation;
+            
+            return Math.max(10, Math.min(95, score));
+        }
+
+        // Welcome Email Function (pseudo-implementation)
+        function sendWelcomeEmail(email, propertyAddress) {
+            // In production, this would call your email service
+            console.log('Sending welcome email to:', email);
+            console.log('Property:', propertyAddress);
+            
+            // The email template would be populated and sent
+            const emailTemplate = getWelcomeEmailTemplate(email, propertyAddress);
+            console.log('Email template ready for:', email);
+        }
+
+        // Welcome Email Template
+        function getWelcomeEmailTemplate(email, propertyAddress) {
+            return `
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 2rem; text-align: center; border-radius: 10px 10px 0 0; }
+        .content { background: white; padding: 2rem; border: 1px solid #e5e7eb; }
+        .cta-button { background: #f59e0b; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold; margin: 1rem 0; }
+        .dual-section { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .homeowner-section { background: #f0fdf4; padding: 1rem; border-radius: 5px; border-left: 3px solid #10b981; }
+        .investor-section { background: #f3f4f6; padding: 1rem; border-radius: 5px; border-left: 3px solid #8b5cf6; }
+        .disclaimer { background: #fef3c7; padding: 1rem; border-left: 4px solid #f59e0b; margin: 1rem 0; font-size: 0.9rem; }
+        .footer { background: #f8fafc; padding: 1rem; border-radius: 0 0 10px 10px; font-size: 0.9rem; color: #6b7280; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to JVDeveloper.com — Your Partner in Property Profits</h1>
+        </div>
+        
+        <div class="content">
+            <h2>Welcome ${email.split('@')[0]}!</h2>
+            
+            <div class="dual-section">
+                <div class="homeowner-section">
+                    <h4>For Homeowners</h4>
+                    <p>We turn your property into a high-value development. You keep ownership during the process — we raise capital, build, and sell. All you do is collect your share of the profit.</p>
+                </div>
+                
+                <div class="investor-section">
+                    <h4>For Experienced Owners</h4>
+                    <p>Our experienced JV team manages every phase — from capital stack to construction oversight — ensuring professional execution and maximum value.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="[LOGIN_LINK]" class="cta-button">Log In and Get Started</a>
+            </div>
+            
+            <h3>Your Property: ${propertyAddress}</h3>
+            <p>Congratulations! Your property has been approved for our JV development program. Here's what happens next:</p>
+            
+            <ol>
+                <li><strong>JV Agreement Review</strong> - We'll send your personalized agreement within 24 hours</li>
+                <li><strong>Market Analysis</strong> - Our team will complete a detailed feasibility study</li>
+                <li><strong>Capital Raising</strong> - We begin securing investor funding for your project</li>
+                <li><strong>Development Launch</strong> - Permits, construction, and project management begin</li>
+                <li><strong>Profit Distribution</strong> - You receive your share upon successful completion</li>
+            </ol>
+            
+            <div class="disclaimer">
+                <strong>Important:</strong> All investments carry risk; timelines and returns are not guaranteed.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Questions? Contact us at info@jvdeveloper.com or (555) 123-4567</p>
+            <p>JVDeveloper.com | 123 Business Ave, Suite 100, Austin, TX 78701</p>
+        </div>
+    </div>
+</body>
+</html>
+            `;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+            loadUploadedLogo();
+        });
+
+        // Try to load the uploaded logo image
+        async function loadUploadedLogo() {
+            console.log('Attempting to load uploaded logo...');
+            
+            // Comprehensive list of possible filenames
+            const possibleNames = [
+                // Direct uploads
+                'image.png', 'image.jpg', 'image.jpeg', 'image.gif', 'image.svg', 'image.webp',
+                
+                // Common logo names
+                'logo.png', 'logo.jpg', 'logo.jpeg', 'logo.svg', 'logo.gif',
+                'jvdeveloper.png', 'jvdeveloper.jpg', 'jvdeveloper.jpeg',
+                'jv-logo.png', 'jv-logo.jpg',
+                
+                // Upload variations
+                'upload.png', 'upload.jpg', 'upload.jpeg',
+                'file.png', 'file.jpg', 'file.jpeg',
+                'paste.png', 'paste.jpg', 'paste.jpeg',
+                
+                // Screenshots
+                'screenshot.png', 'screenshot.jpg',
+                'screen.png', 'screen.jpg'
+            ];
+
+            for (const filename of possibleNames) {
+                try {
+                    console.log(`Trying: ${filename}`);
+                    const imageData = await window.fs.readFile(filename);
+                    
+                    // Determine MIME type
+                    const extension = filename.split('.').pop().toLowerCase();
+                    let mimeType = 'image/png';
+                    if (extension === 'jpg' || extension === 'jpeg') mimeType = 'image/jpeg';
+                    else if (extension === 'svg') mimeType = 'image/svg+xml';
+                    else if (extension === 'gif') mimeType = 'image/gif';
+                    else if (extension === 'webp') mimeType = 'image/webp';
+                    
+                    // Create blob and URL
+                    const blob = new Blob([imageData], { type: mimeType });
+                    const logoUrl = URL.createObjectURL(blob);
+                    
+                    // Update the image
+                    const logoImg = document.getElementById('logoImage');
+                    const logoFallback = document.getElementById('logoFallback');
+                    
+                    logoImg.src = logoUrl;
+                    logoImg.style.display = 'block';
+                    logoImg.style.filter = 'brightness(0) invert(1)'; // Make it white for dark header
+                    logoFallback.style.display = 'none';
+                    
+                    console.log(`✓ Successfully loaded logo: ${filename}`);
+                    return; // Success!
+                    
+                } catch (error) {
+                    // File not found, continue to next
+                    continue;
+                }
+            }
+            
+            console.log('No uploaded logo found, using SVG fallback');
+        }
+    </script>
+</body>
+</html>
